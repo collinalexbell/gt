@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"kuberlog/ge/buf"
+	"kuberlog/ge/ui"
+	"time"
+)
 
 func main() {
-	fmt.Println("ge v0.0.1")
+	b := buf.FromString("this\nis a \nbuffer")
+	ui := ui.Init()
+	ui.BlitBuffer(b)
+	ui.Show()
+	time.Sleep(time.Second * 5)
+	ui.Fini()
 }
