@@ -2,15 +2,15 @@ package main
 
 import (
 	"kuberlog/ge/buf"
-	"kuberlog/ge/ui"
+	"kuberlog/ge/win"
 	"time"
 )
 
 func main() {
 	b := buf.FromString("this\nis a \nbuffer")
-	ui := ui.Init()
-	ui.BlitBuffer(b)
-	ui.Show()
+	win := win.Init()
+	win.BlitBuffer(b)
+	win.Show()
 	time.Sleep(time.Second * 5)
-	ui.Fini()
+	win.Fini()
 }

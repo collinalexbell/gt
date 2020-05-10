@@ -1,4 +1,4 @@
-package ui
+package win
 
 import (
 	"fmt"
@@ -8,11 +8,11 @@ import (
 	"github.com/gdamore/tcell"
 )
 
-type Ui struct {
+type Window struct {
 	screen tcell.Screen
 }
 
-func Init() Ui {
+func Init() Window {
 	screen, errors := tcell.NewScreen()
 	if errors != nil {
 		fmt.Fprintf(os.Stderr, "Failed to create screen")
@@ -25,25 +25,25 @@ func Init() Ui {
 
 	screen.SetStyle(tcell.StyleDefault)
 	screen.Clear()
-	return Ui{screen: screen}
+	return Window{screen: screen}
 }
 
-func (ui *Ui) BlitBuffer(b *buf.Buffer) {
-	cols, rows := ui.screen.Size()
+func (window *Window) BlitBuffer(b *buf.Buffer) {
+	cols, rows := window.screen.Size()
 	lines := b.View()
 	for y, line := range lines {
 		for x, runeValue := range line {
 			if y <= rows && x <= cols {
-				ui.screen.SetContent(x, y, runeValue, []rune{}, tcell.StyleDefault)
+				window.screen.SetContent(x, y, runeValue, []rune{}, tcell.StyleDefault)
 			}
 		}
 	}
 }
 
-func (ui *Ui) Show() {
-	ui.screen.Show()
+func (window *Window) Show() {
+	window.screen.Show()
 }
 
-func (ui *Ui) Fini() {
-	ui.screen.Fini()
+func (window *Window) Fini() {
+	window.screen.Fini()
 }
