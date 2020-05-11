@@ -21,10 +21,8 @@ func blitBufferFromStr(window win.Window, str string) {
 
 func TestBlitBufferNormal(t *testing.T) {
 	channel, window := mockWindow()
-
 	str := "this\nis a\nnew buffer\n"
 	blitBufferFromStr(window, str)
-
 	row, col := 0, 0
 	for _, r := range str {
 		if r == '\n' {
@@ -32,7 +30,7 @@ func TestBlitBufferNormal(t *testing.T) {
 			col = 0
 		} else {
 			c := <-channel
-			if c.R != r {
+			if c.R != r || c.X != col || c.Y != row {
 				t.Errorf("%v != %v", c.R, r)
 			}
 			col++
