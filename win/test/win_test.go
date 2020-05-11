@@ -14,25 +14,37 @@ func mockWindow() (chan mock.Content, win.Window) {
 	return channel, window
 }
 
-func blitBufferFromStr(window win.Window, str string) {
+func goBlitBufferFromStr(window win.Window, str string) {
 	buffer := buf.FromString(str)
 	go window.BlitBuffer(buffer)
+}
+
+func testContents(expected mock.Content, actual mock.Content, t *testing.T) {
+	if expected != actual {
+		t.Errorf("%v != %v", expected.R, actual.R)
+	}
+}
+
+func nextRow(row int, col int) (int, int) {
+	row++
+	col = 0
+	return row, col
 }
 
 func TestBlitBufferNormal(t *testing.T) {
 	channel, window := mockWindow()
 	str := "this\nis a\nnew buffer\n"
-	blitBufferFromStr(window, str)
+	goBlitBufferFromStr(window, str)
+
+	var actual, expected mock.Content
 	row, col := 0, 0
-	for _, r := range str {
-		if r == '\n' {
-			row++
-			col = 0
+	for _, runeVal := range str {
+		if runeVal == '\n' {
+			row, col = nextRow(row, col)
 		} else {
-			c := <-channel
-			if c.R != r || c.X != col || c.Y != row {
-				t.Errorf("%v != %v", c.R, r)
-			}
+			actual = <-channel
+			expected = mock.Content{X: col, Y: row, R: runeVal}
+			testContents(actual, expected, t)
 			col++
 		}
 	}
