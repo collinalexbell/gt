@@ -2,7 +2,6 @@ package win
 
 import (
 	"kuberlog/ge/buf"
-
 	"kuberlog/ge/ui"
 )
 
@@ -16,10 +15,11 @@ func Init(ui ui.Ui) Window {
 
 func (window *Window) BlitBuffer(b *buf.Buffer) {
 	cols, rows := window.ui.ScreenSize()
+
 	lines := b.View()
 	for y, line := range lines {
 		for x, runeValue := range line {
-			if y <= rows && x <= cols {
+			if y < rows && x < cols {
 				window.ui.SetContent(x, y, runeValue)
 			}
 		}
