@@ -4,15 +4,14 @@ import (
 	"kuberlog/ge/buf"
 
 	"kuberlog/ge/ui"
-	"kuberlog/ge/ui/impl/tcell"
 )
 
 type Window struct {
 	ui ui.Ui
 }
 
-func Init() Window {
-	return Window{ui: tcell.Init()}
+func Init(ui ui.Ui) Window {
+	return Window{ui: ui}
 }
 
 func (window *Window) BlitBuffer(b *buf.Buffer) {
