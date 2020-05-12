@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"kuberlog/ge/ge"
+	"kuberlog/ge/ui/impl/tcell"
 	"os"
 )
 
@@ -11,5 +12,6 @@ func main() {
 		panic(fmt.Sprintf("not enough args"))
 	}
 	fname := os.Args[1]
-	ge.Ge(fname)
+	ui := tcell.Init()
+	ge.Ge(fname, ui)
 }

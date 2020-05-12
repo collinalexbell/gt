@@ -8,13 +8,6 @@ import (
 	"time"
 )
 
-func mockWindow(rows int, cols int) (chan mock.Content, win.Window) {
-	channel := make(chan mock.Content)
-	ui := mock.Init(channel, cols, rows)
-	window := win.Init(ui)
-	return channel, window
-}
-
 func goBlitBufferFromStr(window win.Window, str string) {
 	buffer := buf.FromString(str)
 	go window.BlitBuffer(buffer)
@@ -33,7 +26,7 @@ func nextRow(row int, col int) (int, int) {
 }
 
 func TestBlitBuffer_Normal(t *testing.T) {
-	channel, window := mockWindow(300, 300)
+	channel, window := MockWindow(300, 300)
 	str := "this\nis a\nnew buffer\n"
 	goBlitBufferFromStr(window, str)
 
@@ -53,7 +46,7 @@ func TestBlitBuffer_Normal(t *testing.T) {
 
 func TestBlitBuffer_TooWide(t *testing.T) {
 	cols := 2
-	channel, window := mockWindow(3, cols)
+	channel, window := MockWindow(3, cols)
 	str := "abc\ndef\n"
 	goBlitBufferFromStr(window, str)
 	var actual, expected mock.Content
@@ -74,7 +67,7 @@ func TestBlitBuffer_TooWide(t *testing.T) {
 
 func TestBlitBuffer_TooLong(t *testing.T) {
 	rows := 2
-	channel, window := mockWindow(rows, 2)
+	channel, window := MockWindow(rows, 2)
 	str := "ab\ncd\nef\n"
 	goBlitBufferFromStr(window, str)
 

@@ -3,7 +3,7 @@ package ge
 import (
 	"io/ioutil"
 	"kuberlog/ge/buf"
-	"kuberlog/ge/ui/impl/tcell"
+	"kuberlog/ge/ui"
 	"kuberlog/ge/win"
 	"time"
 )
@@ -16,9 +16,8 @@ func open(fname string) string {
 	return string(b)
 }
 
-func Ge(fname string) {
+func Ge(fname string, ui ui.Ui) {
 	b := buf.FromString(open(fname))
-	ui := tcell.Init()
 	win := win.Init(ui)
 	win.BlitBuffer(b)
 	win.Show()
