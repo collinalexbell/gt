@@ -1,8 +1,8 @@
 package test
 
 import (
-	"kuberlog/ge/ui"
-	"kuberlog/ge/ui/impl/mock"
+	"github.com/kuberlog/gt/ui"
+	"github.com/kuberlog/gt/ui/impl/mock"
 	"strings"
 	"testing"
 )

@@ -2,17 +2,18 @@ package test
 
 import (
 	"io/ioutil"
-	"kuberlog/ge/ge"
-	"kuberlog/ge/ui"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/kuberlog/gt/gt"
+	"github.com/kuberlog/gt/ui"
 )
 
 func TestGe(t *testing.T) {
 	channel, ui := ui.MockUi(300, 300)
-	go ge.Ge("./ge_test.go", ui)
-	b, err := ioutil.ReadFile("./ge_test.go")
+	go gt.Gt("./gt_test.go", ui)
+	b, err := ioutil.ReadFile("./gt_test.go")
 	if err != nil {
 		t.Errorf("could not find test file\n")
 	}

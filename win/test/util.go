@@ -1,9 +1,9 @@
 package test
 
 import (
-	"kuberlog/ge/ui"
-	"kuberlog/ge/ui/impl/mock"
-	"kuberlog/ge/win"
+	"github.com/kuberlog/gt/ui"
+	"github.com/kuberlog/gt/ui/impl/mock"
+	"github.com/kuberlog/gt/win"
 )
 
 func MockWindow(rows int, cols int) (chan mock.Content, win.Window) {

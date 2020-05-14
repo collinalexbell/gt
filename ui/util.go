@@ -1,6 +1,6 @@
 package ui
 
-import "kuberlog/ge/ui/impl/mock"
+import "github.com/kuberlog/gt/ui/impl/mock"
 
 func MockUi(rows int, cols int) (chan mock.Content, Ui) {
 	channel := make(chan mock.Content)

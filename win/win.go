@@ -1,8 +1,8 @@
 package win
 
 import (
-	"kuberlog/ge/buf"
-	"kuberlog/ge/ui"
+	"github.com/kuberlog/gt/buf"
+	"github.com/kuberlog/gt/ui"
 )
 
 type Window struct {

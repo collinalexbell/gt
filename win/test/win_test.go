@@ -1,9 +1,9 @@
 package test
 
 import (
-	"kuberlog/ge/buf"
-	"kuberlog/ge/ui/impl/mock"
-	"kuberlog/ge/win"
+	"github.com/kuberlog/gt/buf"
+	"github.com/kuberlog/gt/ui/impl/mock"
+	"github.com/kuberlog/gt/win"
 	"testing"
 	"time"
 )

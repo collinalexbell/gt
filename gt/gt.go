@@ -1,11 +1,12 @@
-package ge
+package gt
 
 import (
 	"io/ioutil"
-	"kuberlog/ge/buf"
-	"kuberlog/ge/ui"
-	"kuberlog/ge/win"
 	"time"
+
+	"github.com/kuberlog/gt/buf"
+	"github.com/kuberlog/gt/ui"
+	"github.com/kuberlog/gt/win"
 )
 
 func open(fname string) string {
@@ -16,7 +17,7 @@ func open(fname string) string {
 	return string(b)
 }
 
-func Ge(fname string, ui ui.Ui) {
+func Gt(fname string, ui ui.Ui) {
 	b := buf.FromString(open(fname))
 	win := win.Init(ui)
 	win.BlitBuffer(b)

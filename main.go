@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
-	"kuberlog/ge/ge"
-	"kuberlog/ge/ui/impl/tcell"
 	"os"
+
+	"github.com/kuberlog/gt/ui/impl/tcell"
+
+	"github.com/kuberlog/gt/gt"
 )
 
 func main() {
@@ -13,5 +15,5 @@ func main() {
 	}
 	fname := os.Args[1]
 	ui := tcell.Init()
-	ge.Ge(fname, ui)
+	gt.Gt(fname, ui)
 }

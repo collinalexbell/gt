@@ -1,4 +1,5 @@
-# ge: go edit
+# gt: go text
+This is a vim like text utility written in golang.
 
 ## Code structure
 Each package contains a `test` sub package. If the package is mostly an interface with several implementations (the `ui` package for example), then it will contain an `impl` subpackage as well.

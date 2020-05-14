@@ -1,7 +1,7 @@
 package test
 
 import (
-	"kuberlog/ge/buf"
+	"github.com/kuberlog/gt/buf"
 	"strings"
 	"testing"
 )
