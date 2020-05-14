@@ -27,6 +27,24 @@ func TestViewWithIndices(t *testing.T) {
 	}
 }
 
+func TestMarkAndGetMarkers(t *testing.T) {
+	b := buf.FromString(str)
+	expected := make([]buf.Marker, 0)
+	for index := range strings.Split(str, "\n") {
+		expected = append(expected, b.Mark(index, 0))
+	}
+	actual := b.GetMarkers()
+	if len(actual) != len(expected) {
+		t.Errorf("len(actual)=%v, len(expected)=%v", len(actual), len(expected))
+		return
+	}
+	for index := range expected {
+		if actual[index] != expected[index] {
+			t.Errorf("%v != %v", actual[index], expected[index])
+		}
+	}
+}
+
 func TestGetLineByMarker(t *testing.T) {
 	b := buf.FromString(str)
 	marker := b.Mark(1, 0)

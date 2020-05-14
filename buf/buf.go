@@ -7,7 +7,8 @@ type Marker struct {
 }
 
 type Buffer struct {
-	s []string
+	s       []string
+	markers []Marker
 }
 
 func FromString(s string) *Buffer {
@@ -25,7 +26,12 @@ func (b *Buffer) ViewLines(start int, stop int) []string {
 
 func (b *Buffer) Mark(row int, col int) Marker {
 	m := Marker{row, col}
+	b.markers = append(b.markers, m)
 	return m
+}
+
+func (b *Buffer) GetMarkers() []Marker {
+	return b.markers
 }
 
 func (b *Buffer) GetLineByMarker(m Marker) string {
