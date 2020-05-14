@@ -6,7 +6,7 @@ Each package contains a `test` sub package. If the package is mostly an interfac
 ## Design
 
 ### buf
-Contains the Buffer struct which has methods to actually manipulate the text and to obtain Line string or Lines []string views into the text.
+Contains `Buffer` which has methods to manipulate the text and to obtain `Line string` or `Lines []string` views into the text. All text manipulations should be done through `Buffer` methods.
 
 ### ge
 Handles editor functions such as opening/closing/saving files and loading configuration.
