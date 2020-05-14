@@ -29,7 +29,7 @@ func TestViewWithIndices(t *testing.T) {
 
 func TestGetLineByMarker(t *testing.T) {
 	b := buf.FromString(str)
-	marker := b.NewMarker(1, 0)
+	marker := b.Mark(1, 0)
 	line := b.GetLineByMarker(marker)
 	if line != "is" {
 		t.Errorf("%s != %s", "is", line)
@@ -38,7 +38,7 @@ func TestGetLineByMarker(t *testing.T) {
 
 func TestDeleteLineByMarker_MiddleLine(t *testing.T) {
 	b := buf.FromString(str)
-	marker := b.NewMarker(1, 0)
+	marker := b.Mark(1, 0)
 
 	b.DeleteLineByMarker(marker)
 	lines := b.View()
@@ -53,7 +53,7 @@ func TestDeleteLineByMarker_MiddleLine(t *testing.T) {
 
 func TestDeleteLineByMarker_MarkerRowToBig(t *testing.T) {
 	b := buf.FromString(str)
-	marker := b.NewMarker(10, 0)
+	marker := b.Mark(10, 0)
 
 	b.DeleteLineByMarker(marker)
 	lines := b.View()
@@ -69,7 +69,7 @@ func TestDeleteLineByMarker_MarkerRowToBig(t *testing.T) {
 
 func TestDeleteLineByMarker_MarkerRowIsZero(t *testing.T) {
 	b := buf.FromString(str)
-	marker := b.NewMarker(0, 0)
+	marker := b.Mark(0, 0)
 
 	b.DeleteLineByMarker(marker)
 	lines := b.View()

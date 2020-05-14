@@ -23,7 +23,7 @@ func (b *Buffer) ViewLines(start int, stop int) []string {
 	return b.View()[start:stop]
 }
 
-func (b *Buffer) NewMarker(row int, col int) Marker {
+func (b *Buffer) Mark(row int, col int) Marker {
 	m := Marker{row, col}
 	return m
 }
