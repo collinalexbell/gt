@@ -30,6 +30,15 @@ func (b *Buffer) Mark(row int, col int) Marker {
 	return m
 }
 
+func (b *Buffer) DeleteMarker(marker Marker) {
+	for index := range b.markers {
+		if marker == b.markers[index] {
+			b.markers = append(b.markers[0:index], b.markers[index+1:]...)
+			return // Only want to delete the first marker? I really should do this with pointers.
+		}
+	}
+}
+
 func (b *Buffer) GetMarkers() []Marker {
 	return b.markers
 }

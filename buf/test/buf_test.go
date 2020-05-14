@@ -45,6 +45,16 @@ func TestMarkAndGetMarkers(t *testing.T) {
 	}
 }
 
+func TestDeleteMarker(t *testing.T) {
+	b := buf.FromString(str)
+	b.Mark(0, 0)
+	mark := b.Mark(1, 0)
+	b.DeleteMarker(mark)
+	if len(b.GetMarkers()) != 1 {
+		t.Errorf("len(b.GetMarkers) != 1")
+	}
+}
+
 func TestGetLineByMarker(t *testing.T) {
 	b := buf.FromString(str)
 	marker := b.Mark(1, 0)
