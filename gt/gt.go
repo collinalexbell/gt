@@ -2,7 +2,6 @@ package gt
 
 import (
 	"io/ioutil"
-	"time"
 
 	"github.com/kuberlog/gt/buf"
 	"github.com/kuberlog/gt/ui"
@@ -22,6 +21,6 @@ func Gt(fname string, ui ui.Ui) {
 	win := win.Init(ui)
 	win.BlitBuffer(b)
 	win.Show()
-	time.Sleep(time.Second * 5)
+	win.LookForQuit()
 	win.Fini()
 }

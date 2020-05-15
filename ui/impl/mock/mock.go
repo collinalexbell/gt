@@ -1,5 +1,17 @@
 package mock
 
+import (
+	"time"
+
+	"github.com/kuberlog/gt/ui/event"
+)
+
+type Event struct{}
+
+func (Event) When() time.Time {
+	return time.Now()
+}
+
 type Content struct {
 	X, Y int
 	R    rune
@@ -25,3 +37,7 @@ func (ui *MockUi) ScreenSize() (int, int) {
 func (ui *MockUi) Show() {}
 
 func (ui *MockUi) Fini() {}
+
+func (ui *MockUi) PollEvent() event.Event {
+	return Event{}
+}
