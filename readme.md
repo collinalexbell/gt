@@ -18,3 +18,12 @@ Abstracting the Ui is important for cross platform support. It enables any graph
 
 ### win
 Uses the Ui to render buffers, display metadata, and handle commands.
+
+
+### v1 roadmap
+- all of vim's normal mode commands
+- 2 ui: tcell and mock
+- config as source file for keymapping to buffer commands
+- Go syntax and error highlighting
+- Go autocomplete
+- Go fmt on save
