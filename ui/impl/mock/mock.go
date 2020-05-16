@@ -6,10 +6,16 @@ import (
 	"github.com/kuberlog/gt/ui/event"
 )
 
-type Event struct{}
+type EventKey struct {
+	r rune
+}
 
-func (Event) When() time.Time {
+func (EventKey) When() time.Time {
 	return time.Now()
+}
+
+func (e EventKey) Rune() rune {
+	return e.r
 }
 
 type Content struct {
@@ -20,10 +26,15 @@ type Content struct {
 type MockUi struct {
 	content      chan Content
 	sizeX, sizeY int
+	keys         chan rune
 }
 
 func Init(content chan Content, sizeX int, sizeY int) *MockUi {
-	return &MockUi{content, sizeX, sizeY}
+	return &MockUi{content, sizeX, sizeY, nil}
+}
+
+func (ui *MockUi) InitKeys(keys chan rune) {
+	ui.keys = keys
 }
 
 func (ui *MockUi) SetContent(x int, y int, runeVal rune) {
@@ -39,5 +50,9 @@ func (ui *MockUi) Show() {}
 func (ui *MockUi) Fini() {}
 
 func (ui *MockUi) PollEvent() event.Event {
-	return Event{}
+	if ui.keys == nil {
+		// todo: return an err
+	}
+	key := <-ui.keys
+	return EventKey{key}
 }

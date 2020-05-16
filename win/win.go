@@ -29,7 +29,6 @@ func (window *Window) BlitBuffer(b *buf.Buffer) {
 
 // todo: test this fn
 func (window *Window) LookForQuit() {
-	defer window.Fini()
 	q := false
 	for !q {
 		e := window.ui.PollEvent()

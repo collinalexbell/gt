@@ -1,11 +1,12 @@
 package test
 
 import (
+	"testing"
+	"time"
+
 	"github.com/kuberlog/gt/buf"
 	"github.com/kuberlog/gt/ui/impl/mock"
 	"github.com/kuberlog/gt/win"
-	"testing"
-	"time"
 )
 
 func goBlitBufferFromStr(window win.Window, str string) {
@@ -92,4 +93,8 @@ func TestBlitBuffer_TooLong(t *testing.T) {
 		t.Errorf("channel should be exhauseted, but another row was added to it")
 	default:
 	}
+}
+
+func TestLookForQuit(t *testing.T) {
+
 }
