@@ -27,7 +27,7 @@ func nextRow(row int, col int) (int, int) {
 }
 
 func TestBlitBuffer_Normal(t *testing.T) {
-	channel, window := MockWindow(300, 300)
+	channel, _, window := MockWindow(300, 300)
 	str := "this\nis a\nnew buffer\n"
 	goBlitBufferFromStr(window, str)
 
@@ -47,7 +47,7 @@ func TestBlitBuffer_Normal(t *testing.T) {
 
 func TestBlitBuffer_TooWide(t *testing.T) {
 	cols := 2
-	channel, window := MockWindow(3, cols)
+	channel, _, window := MockWindow(3, cols)
 	str := "abc\ndef\n"
 	goBlitBufferFromStr(window, str)
 	var actual, expected mock.Content
@@ -68,7 +68,7 @@ func TestBlitBuffer_TooWide(t *testing.T) {
 
 func TestBlitBuffer_TooLong(t *testing.T) {
 	rows := 2
-	channel, window := MockWindow(rows, 2)
+	channel, _, window := MockWindow(rows, 2)
 	str := "ab\ncd\nef\n"
 	goBlitBufferFromStr(window, str)
 
@@ -96,5 +96,7 @@ func TestBlitBuffer_TooLong(t *testing.T) {
 }
 
 func TestLookForQuit(t *testing.T) {
-
+	_, keyPressChan, window := MockWindow(200, 200)
+	go func() { keyPressChan <- 'q' }()
+	window.LookForQuit()
 }

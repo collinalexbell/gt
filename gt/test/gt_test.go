@@ -11,7 +11,7 @@ import (
 )
 
 func TestGe(t *testing.T) {
-	channel, ui := ui.MockUi(300, 300)
+	channel, _, ui := ui.MockUi(300, 300)
 	go gt.Gt("./gt_test.go", ui)
 	b, err := ioutil.ReadFile("./gt_test.go")
 	if err != nil {
