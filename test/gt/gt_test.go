@@ -1,4 +1,4 @@
-package test
+package gt
 
 import (
 	"io/ioutil"
@@ -7,7 +7,7 @@ import (
 	"time"
 
 	gtpack "github.com/kuberlog/gt/gt"
-	ui "github.com/kuberlog/gt/ui/test"
+	"github.com/kuberlog/gt/test/ui"
 )
 
 func TestGt(t *testing.T) {

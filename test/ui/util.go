@@ -1,4 +1,4 @@
-package test
+package ui
 
 import (
 	"github.com/kuberlog/gt/ui"
