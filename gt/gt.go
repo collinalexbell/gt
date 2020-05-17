@@ -60,15 +60,20 @@ func (gt Gt) Gt(fname string) {
 func (gt Gt) cmdMode() string {
 	input := strings.Builder{}
 	for {
+		gt.viewer.DisplayCmd(input.String())
 		event := gt.input.PollEvent()
 		inputKey, isKey := event.(ui.InputKey)
 		if isKey {
 			switch inputKey.Rune() {
-			case 27: //escape
+			case 0: //escape
+				fallthrough
+			case 27:
+				gt.viewer.ClearCmd()
 				return ""
 			case 10: //enter
 				fallthrough
 			case 13:
+				gt.viewer.ClearCmd()
 				return input.String()
 			default:
 				input.WriteRune(inputKey.Rune())

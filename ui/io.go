@@ -17,7 +17,7 @@ type InputKey interface {
 
 type Outputter interface {
 	SetContent(x int, y int, mainc rune)
-	ScreenSize() (int, int)
+	ScreenSize() (int, int) // cols, rows
 	Show()
 }
 
