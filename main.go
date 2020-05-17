@@ -6,9 +6,8 @@ import (
 	"os"
 	"syscall"
 
+	gtpack "github.com/kuberlog/gt/gt"
 	"github.com/kuberlog/gt/ui/impl/tcell"
-
-	"github.com/kuberlog/gt/gt"
 )
 
 func redirectStderr(f *os.File) {
@@ -31,6 +30,8 @@ func main() {
 	}
 	fname := os.Args[1]
 
-	ui := tcell.Init()
-	gt.Gt(fname, ui)
+	io := tcell.Init()
+	gt := gtpack.NewGt(io)
+	gt.Gt(fname)
+	io.Fini()
 }

@@ -1,4 +1,4 @@
-package test
+package gt
 
 import (
 	"io/ioutil"
@@ -6,13 +6,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kuberlog/gt/gt"
-	"github.com/kuberlog/gt/ui"
+	gtpack "github.com/kuberlog/gt/gt"
+	"github.com/kuberlog/gt/test/ui"
 )
 
-func TestGe(t *testing.T) {
-	channel, _, ui := ui.MockUi(300, 300)
-	go gt.Gt("./gt_test.go", ui)
+func TestGt(t *testing.T) {
+	channel, keyChan, ui := ui.MockUi(300, 300)
+	gt := gtpack.NewGt(ui)
+	go gt.Gt("./gt_test.go")
 	b, err := ioutil.ReadFile("./gt_test.go")
 	if err != nil {
 		t.Errorf("could not find test file\n")
@@ -28,4 +29,5 @@ func TestGe(t *testing.T) {
 			t.Errorf("not enough content on channel")
 		}
 	}
+	keyChan <- 'q'
 }
