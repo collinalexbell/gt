@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/gdamore/tcell"
-	"github.com/kuberlog/gt/ui/event"
+	"github.com/kuberlog/gt/ui"
 )
 
 type TCellUI struct {
@@ -44,6 +44,6 @@ func (ui *TCellUI) Fini() {
 	ui.screen.Fini()
 }
 
-func (ui *TCellUI) PollEvent() event.Event {
+func (ui *TCellUI) PollEvent() ui.InputEvent {
 	return ui.screen.PollEvent()
 }

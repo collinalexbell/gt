@@ -6,13 +6,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kuberlog/gt/gt"
-	"github.com/kuberlog/gt/ui"
+	gtpack "github.com/kuberlog/gt/gt"
+	ui "github.com/kuberlog/gt/ui/test"
 )
 
-func TestGe(t *testing.T) {
+func TestGt(t *testing.T) {
 	channel, _, ui := ui.MockUi(300, 300)
-	go gt.Gt("./gt_test.go", ui)
+	gt := gtpack.NewGt(ui)
+	go gt.Gt("./gt_test.go")
 	b, err := ioutil.ReadFile("./gt_test.go")
 	if err != nil {
 		t.Errorf("could not find test file\n")
