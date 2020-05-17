@@ -3,7 +3,7 @@ package mock
 import (
 	"time"
 
-	"github.com/kuberlog/gt/ui/event"
+	"github.com/kuberlog/gt/ui"
 )
 
 type EventKey struct {
@@ -29,7 +29,7 @@ type MockUi struct {
 	keys         chan rune
 }
 
-func Init(content chan Content, sizeX int, sizeY int) *MockUi {
+func InitMockUi(content chan Content, sizeX int, sizeY int) *MockUi {
 	return &MockUi{content, sizeX, sizeY, nil}
 }
 
@@ -49,7 +49,7 @@ func (ui *MockUi) Show() {}
 
 func (ui *MockUi) Fini() {}
 
-func (ui *MockUi) PollEvent() event.Event {
+func (ui *MockUi) PollEvent() ui.InputEvent {
 	if ui.keys == nil {
 		// todo: return an err
 	}
