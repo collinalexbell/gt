@@ -2,8 +2,6 @@ package mock
 
 import (
 	"time"
-
-	"github.com/kuberlog/gt/ui"
 )
 
 type EventKey struct {
@@ -49,7 +47,7 @@ func (ui *MockUi) Show() {}
 
 func (ui *MockUi) Fini() {}
 
-func (ui *MockUi) PollEvent() ui.InputEvent {
+func (ui *MockUi) PollEvent() EventKey {
 	if ui.keys == nil {
 		// todo: return an err
 	}
