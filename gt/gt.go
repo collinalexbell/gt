@@ -28,6 +28,8 @@ func NewGt(io ui.IO) Gt {
 }
 
 func (gt *Gt) InitIO(io ui.IO) {
+	// do not leak the io
+	// the Gt should only have access to input and viewer
 	fmt.Println(io)
 	gt.viewer = ui.InitViewer(io)
 	gt.input = io
@@ -37,4 +39,13 @@ func (gt Gt) Gt(fname string) {
 	b := buf.FromString(open(fname))
 	gt.viewer.BlitBuffer(b)
 	gt.viewer.Show()
+	for {
+		event := gt.input.PollEvent()
+		inputKey, isKey := event.(ui.InputKey)
+		if isKey {
+			if inputKey.Rune() == 'q' {
+				return
+			}
+		}
+	}
 }

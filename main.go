@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	"syscall"
-	"time"
 
 	gtpack "github.com/kuberlog/gt/gt"
 	"github.com/kuberlog/gt/ui/impl/tcell"
@@ -34,6 +33,5 @@ func main() {
 	io := tcell.Init()
 	gt := gtpack.NewGt(io)
 	gt.Gt(fname)
-	time.Sleep(time.Second * 3)
 	io.Fini()
 }
