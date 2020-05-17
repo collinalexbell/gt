@@ -56,3 +56,7 @@ func (ui *MockUi) PollEvent() ui.InputEvent {
 	key := <-ui.keys
 	return EventKey{key}
 }
+
+func (ui *MockUi) ShowCursor(col int, row int) {}
+
+func (ui *MockUi) HideCursor() {}

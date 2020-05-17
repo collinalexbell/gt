@@ -19,6 +19,8 @@ type Outputter interface {
 	SetContent(x int, y int, mainc rune)
 	ScreenSize() (int, int) // cols, rows
 	Show()
+	ShowCursor(col int, row int)
+	HideCursor()
 }
 
 type IO interface {

@@ -55,6 +55,7 @@ func (viewer *Viewer) DisplayCmd(cmd string) {
 		viewer.outputter.SetContent(colInd, row, r)
 		colInd++
 	}
+	viewer.outputter.ShowCursor(colInd, row)
 	viewer.outputter.Show()
 }
 
@@ -64,5 +65,6 @@ func (viewer *Viewer) ClearCmd() {
 	for col := 0; col < cols; col++ {
 		viewer.outputter.SetContent(col, row, ' ')
 	}
+	viewer.outputter.HideCursor()
 	viewer.outputter.Show()
 }

@@ -47,3 +47,11 @@ func (ui *TCellUI) Fini() {
 func (ui *TCellUI) PollEvent() ui.InputEvent {
 	return ui.screen.PollEvent()
 }
+
+func (ui *TCellUI) ShowCursor(col int, row int) {
+	ui.screen.ShowCursor(col, row)
+}
+
+func (ui *TCellUI) HideCursor() {
+	ui.screen.HideCursor()
+}
