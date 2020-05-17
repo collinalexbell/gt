@@ -3,6 +3,7 @@ package gt
 import (
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	"github.com/kuberlog/gt/buf"
 	"github.com/kuberlog/gt/ui"
@@ -45,6 +46,32 @@ func (gt Gt) Gt(fname string) {
 		if isKey {
 			if inputKey.Rune() == 'q' {
 				return
+			}
+			if inputKey.Rune() == ':' {
+				cmd := gt.cmdMode()
+				if cmd == "q" {
+					return
+				}
+			}
+		}
+	}
+}
+
+func (gt Gt) cmdMode() string {
+	input := strings.Builder{}
+	for {
+		event := gt.input.PollEvent()
+		inputKey, isKey := event.(ui.InputKey)
+		if isKey {
+			switch inputKey.Rune() {
+			case 27: //escape
+				return ""
+			case 10: //enter
+				fallthrough
+			case 13:
+				return input.String()
+			default:
+				input.WriteRune(inputKey.Rune())
 			}
 		}
 	}
