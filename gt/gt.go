@@ -44,9 +44,6 @@ func (gt Gt) Gt(fname string) {
 		event := gt.input.PollEvent()
 		inputKey, isKey := event.(ui.InputKey)
 		if isKey {
-			if inputKey.Rune() == 'q' {
-				return
-			}
 			if inputKey.Rune() == ':' {
 				cmd := gt.cmdMode()
 				if cmd == "q" {

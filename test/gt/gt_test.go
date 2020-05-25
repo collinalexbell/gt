@@ -11,7 +11,7 @@ import (
 )
 
 func TestGt(t *testing.T) {
-	channel, keyChan, ui := ui.MockUi(300, 300)
+	channel, _, ui := ui.MockUi(300, 300)
 	gt := gtpack.NewGt(ui)
 	go gt.Gt("./gt_test.go")
 	b, err := ioutil.ReadFile("./gt_test.go")
@@ -29,5 +29,4 @@ func TestGt(t *testing.T) {
 			t.Errorf("not enough content on channel")
 		}
 	}
-	keyChan <- 'q'
 }
